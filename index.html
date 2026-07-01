@@ -610,26 +610,13 @@
           <span class="term-dot green"></span>
           <span class="term-title">chukwuemeka.json</span>
         </div>
-        <div class="terminal-body">
-<span class="t-comment">// Who am I?</span>
-{
-  <span class="t-key">"name"</span>: <span class="t-str">"Chukwuemeka Egbunike"</span>,
-  <span class="t-key">"role"</span>: <span class="t-str">"Full Stack Engineer"</span>,
-  <span class="t-key">"location"</span>: <span class="t-str">"Nigeria 🇳🇬"</span>,
-  <span class="t-key">"available"</span>: <span class="t-cyan">true</span>,
-  <span class="t-key">"stack"</span>: [
-    <span class="t-str">"HTML"</span>, <span class="t-str">"CSS"</span>,
-    <span class="t-str">"JavaScript"</span>, <span class="t-str">"Python"</span>
-  ],
-  <span class="t-key">"projects"</span>: <span class="t-num">10</span>,
-  <span class="t-key">"clients"</span>: <span class="t-num">8</span>,
-  <span class="t-key">"contact"</span>: {
-    <span class="t-key">"whatsapp"</span>: <span class="t-str">"09061175635"</span>,
-    <span class="t-key">"email"</span>: <span class="t-str">"chukwuemekaegbunik
-              @gmail.com"</span>
-  }
-}<span class="t-cursor"></span>
-        </div>
+        <div class="terminal-body" id="terminalBody"><span class="t-cursor" id="termCursor"></span></div>
+      </div>
+    </div>
+
+
+
+
       </div>
     </div>
   </section>
@@ -722,25 +709,25 @@
         <div class="service-header"><span class="service-icon">🖥️</span></div>
         <h3>Full Stack Custom Website</h3>
         <p>Professional websites built from scratch — business sites, portfolios, landing pages, and corporate web presence tailored to your brand.</p>
-        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦200,000 – ₦400,000</span></div>
+        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦200,000($200) – ₦400,000($400)</span></div>
       </div>
       <div class="service-card featured reveal reveal-delay-2">
         <div class="service-header"><span class="service-icon">⚡</span><span class="service-badge">Popular</span></div>
         <h3>Web Apps &amp; Tools</h3>
         <p>Internal dashboards, booking systems, client portals, and custom web applications that automate and streamline your business.</p>
-        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦300,000 – ₦500,000</span></div>
+        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦300,000($300) – ₦500,000($500)</span></div>
       </div>
       <div class="service-card featured reveal reveal-delay-3">
         <div class="service-header"><span class="service-icon">🛒</span><span class="service-badge">Popular</span></div>
         <h3>E-Commerce Stores</h3>
         <p>Shopify customization or fully custom-built storefronts. Sell online with confidence — payment integration, product management, and more.</p>
-        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦400,000 – ₦700,000</span></div>
+        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦400,000($400) – ₦700,000($700)</span></div>
       </div>
       <div class="service-card reveal reveal-delay-4">
         <div class="service-header"><span class="service-icon">🔧</span></div>
         <h3>Website Fixes &amp; Maintenance</h3>
         <p>Monthly retainer packages to keep your site fast, secure, and up to date. Bug fixes, updates, and performance monitoring included.</p>
-        <div class="service-price"><span class="price-from">monthly</span><span class="price-val">₦80,000 – ₦150,000</span></div>
+        <div class="service-price"><span class="price-from">monthly</span><span class="price-val">₦80,000($80) – ₦150,000($150)</span></div>
       </div>
     </div>
   </section>
@@ -793,7 +780,7 @@
             <div class="contact-item-icon">✉️</div>
             <div class="contact-item-text">
               <label>Email</label>
-              <a href="mailto:chukwuemekaegbunik@gmail.com">chukwuemekaegbunik@gmail.com</a>
+              <a href="mailto:chukwuemekaegbunike@gmail.com">chukwuemekaegbunike@gmail.com</a>
             </div>
           </div>
           <div class="contact-item reveal">
@@ -851,6 +838,67 @@
   </a>
 
   <script>
+    // Terminal typewriter effect
+const termSegments = [
+  { text: '// Who am I?\n', cls: 't-comment' },
+  { text: '{\n' },
+  { text: '  ' }, { text: '"name"', cls: 't-key' }, { text: ': ' }, { text: '"Chukwuemeka Egbunike"', cls: 't-str' }, { text: ',\n' },
+  { text: '  ' }, { text: '"role"', cls: 't-key' }, { text: ': ' }, { text: '"Full Stack Engineer"', cls: 't-str' }, { text: ',\n' },
+  { text: '  ' }, { text: '"location"', cls: 't-key' }, { text: ': ' }, { text: '"Nigeria 🇳🇬"', cls: 't-str' }, { text: ',\n' },
+  { text: '  ' }, { text: '"available"', cls: 't-key' }, { text: ': ' }, { text: 'true', cls: 't-cyan' }, { text: ',\n' },
+  { text: '  ' }, { text: '"stack"', cls: 't-key' }, { text: ': [\n' },
+  { text: '    ' }, { text: '"HTML"', cls: 't-str' }, { text: ', ' }, { text: '"CSS"', cls: 't-str' }, { text: ',\n' },
+  { text: '    ' }, { text: '"JavaScript"', cls: 't-str' }, { text: ', ' }, { text: '"Python"', cls: 't-str' }, { text: '\n' },
+  { text: '  ],\n' },
+  { text: '  ' }, { text: '"projects"', cls: 't-key' }, { text: ': ' }, { text: '10', cls: 't-num' }, { text: ',\n' },
+  { text: '  ' }, { text: '"clients"', cls: 't-key' }, { text: ': ' }, { text: '8', cls: 't-num' }, { text: ',\n' },
+  { text: '  ' }, { text: '"contact"', cls: 't-key' }, { text: ': {\n' },
+  { text: '    ' }, { text: '"whatsapp"', cls: 't-key' }, { text: ': ' }, { text: '"09061175635"', cls: 't-str' }, { text: ',\n' },
+  { text: '    ' }, { text: '"email"', cls: 't-key' }, { text: ': ' }, { text: '"chukwuemekaegbunike@gmail.com"', cls: 't-str' }, { text: '\n' },
+  { text: '  }\n}' },
+];
+
+(function typeTerminal() {
+  const body = document.getElementById('terminalBody');
+  const cursor = document.getElementById('termCursor');
+  let segIdx = 0, charIdx = 0;
+
+  function typeNext() {
+    if (segIdx >= termSegments.length) return; // done
+
+    const seg = termSegments[segIdx];
+    const char = seg.text[charIdx];
+
+    // Find or create a span for this segment
+    let span = body.querySelector(`[data-seg="${segIdx}"]`);
+    if (!span) {
+      span = seg.cls ? document.createElement('span') : document.createTextNode('');
+      if (seg.cls) {
+        span.className = seg.cls;
+        span.dataset.seg = segIdx;
+        body.insertBefore(span, cursor);
+      } else {
+        span.isTN = true;
+        body.insertBefore(span, cursor);
+        span._tn = span; // text node ref
+      }
+    }
+
+    if (seg.cls) {
+      span.textContent += char;
+    } else {
+      span.textContent = (span.textContent || '') + char;
+    }
+
+    charIdx++;
+    if (charIdx >= seg.text.length) { segIdx++; charIdx = 0; }
+
+    const delay = char === '\n' ? 30 : (Math.random() * 25 + 18);
+    setTimeout(typeNext, delay);
+  }
+
+  setTimeout(typeNext, 600); // small delay before starting
+})();
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
