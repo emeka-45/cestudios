@@ -41,6 +41,15 @@
       cursor: none;
     }
 
+    /* ── FIXED STAR FIELD (spans the whole page, not just the hero) ── */
+    #starCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     /* ── CUSTOM CURSOR ── */
     .cursor-dot {
       width: 10px; height: 10px; background: var(--cyan);
@@ -177,6 +186,15 @@
     .stat-num .accent { color: var(--cyan); }
     .stat-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
 
+    /* stat count-up "pop" moment when the animation finishes */
+    @keyframes statPop {
+      0%   { transform: scale(1); }
+      45%  { transform: scale(1.22); text-shadow: 0 0 18px rgba(0,200,240,0.8); }
+      100% { transform: scale(1); }
+    }
+    .stat-num.counting .counter { color: var(--cyan); }
+    .stat-num.popped .counter { display: inline-block; animation: statPop 0.5s ease; }
+
     /* RIGHT: terminal card */
     .hero-right { position: relative; z-index: 1; }
     .terminal-card {
@@ -229,7 +247,7 @@
 
     /* ── MARQUEE ── */
     .marquee-wrap {
-      background: var(--bg3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: rgba(17,24,39,0.6); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
       padding: 1rem 0; overflow: hidden; white-space: nowrap;
     }
     .marquee-track { display: inline-flex; gap: 3rem; align-items: center; animation: marquee 22s linear infinite; }
@@ -242,7 +260,7 @@
     @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     /* ── ABOUT ── */
-    #about { background: var(--bg2); }
+    #about { background: rgba(12,17,32,0.55); }
     .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; }
     .about-photo-wrap { position: relative; }
     .about-photo-frame { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--border2); }
@@ -258,7 +276,7 @@
     .chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); }
 
     /* ── SKILLS ── */
-    #skills { background: var(--bg); }
+    #skills { background: rgba(8,12,24,0.55); }
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
     .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; transition: border-color 0.25s, transform 0.25s, background 0.25s; cursor: default; position: relative; overflow: hidden; }
     .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius) var(--radius) 0 0; opacity: 0; transition: opacity 0.25s; }
@@ -275,7 +293,7 @@
     .skill-card p { color: var(--slate); font-size: 0.875rem; line-height: 1.65; }
 
     /* ── PROJECTS ── */
-    #projects { background: var(--bg2); }
+    #projects { background: rgba(12,17,32,0.55); }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .proj-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
     .proj-card:hover { border-color: rgba(0,200,240,0.4); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,200,240,0.1); }
@@ -294,7 +312,7 @@
     .proj-blurb { color: var(--slate); font-size: 0.84rem; line-height: 1.6; }
 
     /* ── SERVICES ── */
-    #services { background: var(--bg); }
+    #services { background: rgba(8,12,24,0.55); }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem; }
     .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; display: flex; flex-direction: column; transition: border-color 0.25s, transform 0.25s; position: relative; overflow: hidden; }
     .service-card:hover { border-color: var(--border2); transform: translateY(-4px); }
@@ -310,7 +328,7 @@
     .price-val { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--cyan); }
 
     /* ── PROCESS ── */
-    #process { background: var(--bg2); }
+    #process { background: rgba(12,17,32,0.55); }
     .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
     .process-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; position: relative; }
     .process-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--violet); letter-spacing: 0.1em; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
@@ -319,7 +337,7 @@
     .process-card p { color: var(--slate); font-size: 0.875rem; line-height: 1.7; }
 
     /* ── CONTACT ── */
-    #contact { background: var(--bg); }
+    #contact { background: rgba(8,12,24,0.55); }
     .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: start; }
     .contact-info p { color: var(--slate2); line-height: 1.8; margin-bottom: 2rem; font-size: 1rem; }
     .contact-items { display: flex; flex-direction: column; gap: 1rem; }
@@ -353,13 +371,16 @@
     @keyframes wa-pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)} 50%{box-shadow:0 4px 32px rgba(37,211,102,0.65)} }
 
     /* ── FOOTER ── */
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 2.5rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer { background: rgba(12,17,32,0.6); border-top: 1px solid var(--border); padding: 2.5rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); text-decoration: none; }
     .footer-logo .dot { color: var(--cyan); }
     footer p { color: var(--slate); font-size: 0.84rem; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { color: var(--slate); font-size: 0.84rem; text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
+    .footer-socials { display: flex; align-items: center; gap: 1rem; }
+    .footer-socials a { color: var(--slate); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--white); }
 
     /* ── SCROLL REVEAL ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -390,9 +411,68 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+    /* ── PAGE LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    }
+    .loader-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
+      color: var(--white); letter-spacing: -0.04em;
+    }
+    .loader-logo span { color: var(--cyan); }
+    .loader-bar {
+      width: 160px; height: 2px; background: var(--border);
+      border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      border-radius: 2px;
+      animation: load-fill 1.2s ease forwards;
+    }
+    @keyframes load-fill { 0%{width:0%} 100%{width:100%} }
+    /* ── ACTIVE NAV ── */
+    .nav-links a.active {
+      color: var(--white);
+      position: relative;
+    }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; border-radius: 2px;
+      background: var(--cyan);
+    }
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed; bottom: 6rem; right: 2rem; z-index: 998;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--surface2); border: 1px solid var(--border2);
+      color: var(--white); font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, transform 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    #backToTop.visible { opacity: 1; visibility: visible; }
+    #backToTop:hover { background: var(--cyan); color: var(--bg); transform: translateY(-3px); }
   </style>
 </head>
 <body>
+  <canvas id="starCanvas"></canvas>
+
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">CE<span>.</span></div>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
 
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
@@ -429,7 +509,6 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-    <canvas id="starCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
 
     <div class="hero-left">
       <div class="status-pill">
@@ -563,25 +642,25 @@
         <div class="service-header"><span class="service-icon">🖥️</span></div>
         <h3>Full Stack Custom Website</h3>
         <p>Professional websites built from scratch — business sites, portfolios, landing pages, and corporate web presence tailored to your brand.</p>
-        <div class="service-price"><span class="price-from">from</span><span class="price-val">$200 – $400</span></div>
+        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦200000($200) – ₦400000($400)</span></div>
       </div>
       <div class="service-card featured reveal reveal-delay-2">
         <div class="service-header"><span class="service-icon">⚡</span><span class="service-badge">Popular</span></div>
         <h3>Web Apps &amp; Tools</h3>
         <p>Internal dashboards, booking systems, client portals, and custom web applications that automate and streamline your business.</p>
-        <div class="service-price"><span class="price-from">from</span><span class="price-val">$300 – $500</span></div>
+        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦300000($300) – ₦500000($500)</span></div>
       </div>
       <div class="service-card featured reveal reveal-delay-3">
         <div class="service-header"><span class="service-icon">🛒</span><span class="service-badge">Popular</span></div>
         <h3>E-Commerce Stores</h3>
         <p>Shopify customization or fully custom-built storefronts. Sell online with confidence — payment integration, product management, and more.</p>
-        <div class="service-price"><span class="price-from">from</span><span class="price-val">$400 – $700</span></div>
+        <div class="service-price"><span class="price-from">from</span><span class="price-val">₦400000($400) – ₦700000($700)</span></div>
       </div>
       <div class="service-card reveal reveal-delay-4">
         <div class="service-header"><span class="service-icon">🔧</span></div>
         <h3>Website Fixes &amp; Maintenance</h3>
         <p>Monthly retainer packages to keep your site fast, secure, and up to date. Bug fixes, updates, and performance monitoring included.</p>
-        <div class="service-price"><span class="price-from">monthly</span><span class="price-val">$80 – $150</span></div>
+        <div class="service-price"><span class="price-from">monthly</span><span class="price-val">₦8000($80) – ₦15000($150)</span></div>
       </div>
     </div>
   </section>
@@ -682,13 +761,15 @@
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </div>
-    <div style="display:flex;align-items:center;gap:1rem;">
-  <a href="https://github.com/emeka-45" target="_blank" rel="noopener" style="color:var(--slate);transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--slate)'" aria-label="GitHub">
-    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-  </a>
-  <a href="https://linkedin.com/in/chukwuemeka-egbunike" target="_blank" rel="noopener" style="color:var(--slate);transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--slate)'" aria-label="LinkedIn">
-    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.
-771v20.451C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.225V1.771C24 .774 23.2 0 22.2225 0z"/></svg>
+    <div class="footer-socials">
+      <a href="https://github.com/emeka-45" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/chukwuemeka-egbunike" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.771v20.451C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.225V1.771C24 .774 23.2 0 22.225 0z"/></svg>
+      </a>
+    </div>
+  </footer>
 
   <a href="https://wa.me/2349061175635?text=Hi%20Chukwuemeka%2C%20I%27d%20like%20to%20discuss%20a%20project" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -696,7 +777,22 @@
     </svg>
   </a>
 
+  <a href="#hero" id="backToTop" aria-label="Back to top">↑</a>
+
   <script>
+    // ── Page loader (hides on load, but never waits longer than 6s) ──
+let loaderHidden = false;
+function hideLoader() {
+  if (loaderHidden) return;
+  loaderHidden = true;
+  document.getElementById('loader').classList.add('hidden');
+}
+window.addEventListener('load', () => setTimeout(hideLoader, 800));
+setTimeout(hideLoader, 6000); // hard cap — fires no matter what's still loading
+    
+  
+    
+
     // ── Custom cursor ──
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
@@ -709,14 +805,17 @@
     document.addEventListener('mousedown', () => dot.style.transform = 'translate(-50%, -50%) scale(1.8)');
     document.addEventListener('mouseup', () => dot.style.transform = 'translate(-50%, -50%) scale(1)');
 
-    // ── Star field ──
+    // ── Star field (fixed, spans the whole viewport behind every section) ──
     const canvas = document.getElementById('starCanvas');
     const ctx = canvas.getContext('2d');
     let stars = [];
-    function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
     function initStars() {
       stars = [];
-      for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < 160; i++) {
         stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.2 + 0.3, o: Math.random(), speed: Math.random() * 0.3 + 0.1, dir: Math.random() > 0.5 ? 1 : -1 });
       }
     }
@@ -735,21 +834,37 @@
     resizeCanvas(); initStars(); drawStars();
     window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
 
-    // ── Stats count-up ──
+    // ── Stats count-up (slower + more noticeable) ──
+    function animateStat(el) {
+      const target = +el.dataset.target;
+      const counter = el.querySelector('.counter');
+      const duration = 2400; // ms — slow, deliberate count
+      const start = performance.now();
+      el.classList.add('counting');
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // easeOutCubic for a strong start, gentle settle
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(eased * target);
+        counter.textContent = value;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          counter.textContent = target;
+          el.classList.remove('counting');
+          el.classList.add('popped');
+          setTimeout(() => el.classList.remove('popped'), 550);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
     const statObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = +el.dataset.target;
-        const counter = el.querySelector('.counter');
-        let current = 0;
-        const step = Math.ceil(target / 40);
-        const interval = setInterval(() => {
-          current = Math.min(current + step, target);
-          counter.textContent = current;
-          if (current >= target) clearInterval(interval);
-        }, 40);
-        statObserver.unobserve(el);
+        animateStat(entry.target);
+        statObserver.unobserve(entry.target);
       });
     }, { threshold: 0.5 });
     document.querySelectorAll('.stat-num[data-target]').forEach(el => statObserver.observe(el));
@@ -816,6 +931,27 @@
       }
       setTimeout(typeNext, 600);
     })();
+
+    // ── Active nav on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    });
+
+    // ── Back to top ──
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) backToTop.classList.add('visible');
+      else backToTop.classList.remove('visible');
+    });
 
     // ── Hamburger menu ──
     const hamburger = document.getElementById('hamburger');
