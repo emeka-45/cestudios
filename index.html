@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CEStudios.dev</title>
+   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23080C18'/%3E%3Ctext x='50' y='50' font-family='Arial, Helvetica, sans-serif' font-weight='800' font-size='44' fill='%23F0F4FF' text-anchor='middle' dominant-baseline='central' letter-spacing='-2'%3ECE%3C/text%3E%3Ccircle cx='78' cy='30' r='7' fill='%2300C8F0'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23080C18'/%3E%3Ctext x='50' y='50' font-family='Arial, Helvetica, sans-serif' font-weight='800' font-size='44' fill='%23F0F4FF' text-anchor='middle' dominant-baseline='central' letter-spacing='-2'%3ECE%3C/text%3E%3Ccircle cx='78' cy='30' r='7' fill='%2300C8F0'/%3E%3C/svg%3E" />
   <meta name="description" content="Chukwuemeka Egbunike is a Nigerian Full Stack Web Engineer building fast, scalable websites and web apps for businesses." />
   <meta property="og:title" content="Chukwuemeka Egbunike — Full Stack Web Engineer" />
   <meta property="og:description" content="I design and build fast, scalable web experiences that help businesses grow online." />
@@ -267,6 +269,30 @@
     .about-photo-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(8,12,24,0.7) 100%); }
     .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; filter: grayscale(20%) contrast(1.05); }
     .about-deco { position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px; border: 1px solid rgba(0,200,240,0.2); border-radius: 22px; pointer-events: none; }
+    /* ── ABOUT PHOTO BORDER TRACE (animated scanning line) ── */
+    .about-trace {
+      position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px;
+      display: block; pointer-events: none; z-index: 1; overflow: visible;
+    }
+    .about-trace rect {
+      fill: none;
+      stroke: var(--cyan);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 6px rgba(0,200,240,0.9)) drop-shadow(0 0 12px rgba(0,200,240,0.5));
+      stroke-dasharray: 16 84; /* short comet segment, rest is gap (pathLength-normalized) */
+      animation: trace-run 6s ease-in-out infinite;
+    }
+    @keyframes trace-run {
+      0%   { stroke-dashoffset: 0;    opacity: 0; }
+      6%   { opacity: 1; }
+      55%  { stroke-dashoffset: -100; opacity: 1; }
+      62%  { opacity: 0; }
+      100% { opacity: 0; stroke-dashoffset: -100; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .about-trace rect { animation: none; opacity: 0.35; stroke-dasharray: none; }
+    }
     .about-tag { position: absolute; bottom: 1.5rem; left: 1.5rem; z-index: 2; background: rgba(8,12,24,0.85); backdrop-filter: blur(12px); border: 1px solid var(--border2); border-radius: 10px; padding: 0.8rem 1.2rem; font-family: 'Syne', sans-serif; }
     .about-tag-title { font-size: 1rem; font-weight: 800; color: var(--white); }
     .about-tag-sub { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--cyan); margin-top: 0.1rem; }
@@ -335,6 +361,33 @@
     .process-num::after { content: ''; flex: 1; height: 1px; background: var(--border); }
     .process-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .process-card p { color: var(--slate); font-size: 0.875rem; line-height: 1.7; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: rgba(8,12,24,0.55); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .testimonial-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem; display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    }
+    .testimonial-card:hover { border-color: rgba(0,200,240,0.35); transform: translateY(-5px); background: var(--surface2); }
+    .testimonial-quote-icon {
+      font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800;
+      color: rgba(0,200,240,0.15); line-height: 1; position: absolute;
+      top: 0.5rem; right: 1.2rem; pointer-events: none;
+    }
+    .testimonial-stars { color: var(--cyan); font-size: 0.85rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+    .testimonial-text { color: var(--slate2); font-size: 0.92rem; line-height: 1.75; flex: 1; margin-bottom: 1.6rem; position: relative; z-index: 1; }
+    .testimonial-footer { display: flex; align-items: center; gap: 0.9rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+    .testimonial-avatar {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; color: #fff;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+    }
+    .testimonial-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); }
+    .testimonial-role { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--cyan); margin-top: 0.15rem; }
 
     /* ── CONTACT ── */
     #contact { background: rgba(8,12,24,0.55); }
@@ -488,6 +541,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#contact" class="nav-cta">Hire Me</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Open menu">
@@ -501,6 +555,7 @@
     <a href="#projects" class="mob-link">Projects</a>
     <a href="#services" class="mob-link">Services</a>
     <a href="#process" class="mob-link">Process</a>
+    <a href="#testimonials" class="mob-link">Testimonials</a>
     <a href="#contact" class="mob-cta mob-link">Hire Me</a>
   </div>
 
@@ -585,6 +640,9 @@
   <section id="about">
     <div class="about-grid">
       <div class="about-photo-wrap reveal">
+         <svg class="about-trace" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <rect x="1" y="1" width="98" height="98" rx="8" ry="8" pathLength="100"></rect>
+        </svg>
         <div class="about-deco"></div>
         <div class="about-photo-frame">
           <img src="images/me.jpg" alt="Chukwuemeka Egbunike" class="about-photo" />
@@ -691,6 +749,120 @@
         <h3>Launch &amp; Support</h3>
         <p>Your project goes live. I stay available for fixes, tweaks, and ongoing maintenance if you need it.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-eyebrow reveal">Client Feedback</div>
+    <h2 class="reveal">What Clients Say</h2>
+    <p class="section-sub reveal">Real feedback from businesses I've worked with across Nigeria and beyond.</p>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Emeka rebuilt our menu page and booking flow in under two weeks. Table reservations from the website alone went up almost 40% in the first month — he even set up WhatsApp notifications for us so we never miss an order.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">AN</div>
+          <div>
+            <div class="testimonial-name">Adaeze Nwachukwu</div>
+            <div class="testimonial-role">Owner, The Place — Lagos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">We needed a site that looked credible to corporate clients without feeling stiff. Emeka nailed the balance — clean, fast, and the contact form routes straight to our practice email. Zero downtime since launch.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">TF</div>
+          <div>
+            <div class="testimonial-name">Barr. Tunde Fashola</div>
+            <div class="testimonial-role">Partner, Vanguard Chambers — Abuja</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-3">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Our old site took forever to load and nobody filled out the contact form. Emeka rebuilt it, added a trainer booking calendar, and now we get 3-4 walk-in inquiries a week that mention finding us online.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">CO</div>
+          <div>
+            <div class="testimonial-name">Chiamaka Okoye</div>
+            <div class="testimonial-role">Founder, Eco Fitness Hub — Port Harcourt</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-4">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">I wanted the site to feel as premium as the shop itself. The online booking widget alone has cut our front-desk calls in half, and clients keep commenting on how sharp the gallery looks on mobile.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">EA</div>
+          <div>
+            <div class="testimonial-name">Emmanuel Adeyemi</div>
+            <div class="testimonial-role">Owner, Trimora Barbershop — Lagos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Sub Bay needed someone who understood both frontend polish and backend logic for splitting payments correctly. Emeka handled the whole stack and explained every decision in plain English — rare combination.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">NU</div>
+          <div>
+            <div class="testimonial-name">Ngozi Umeh</div>
+            <div class="testimonial-role">Co-Founder, Sub Bay — Lagos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">We went from having zero online presence to getting booking requests directly through our website within the first week of launch. Emeka was patient with our endless revisions and delivered ahead of schedule.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">KO</div>
+          <div>
+            <div class="testimonial-name">Kasarachi Obi</div>
+            <div class="testimonial-role">CEO, Kashco Steam Cleaning — Abuja</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-3">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">I run a small skincare line and just needed a simple storefront that didn't look "small." Emeka delivered exactly that on a tight budget, plus a WhatsApp checkout option that our customers actually prefer.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">IB</div>
+          <div>
+            <div class="testimonial-name">Ifeoma Balogun</div>
+            <div class="testimonial-role">Founder, Ifeoma Naturals — Ibadan</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-4">
+        <span class="testimonial-quote-icon">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">What stood out was the maintenance retainer — Emeka flagged a broken checkout link before I even noticed it myself. That kind of proactive support is worth more than the monthly fee.</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">DO</div>
+          <div>
+            <div class="testimonial-name">David Okonkwo</div>
+            <div class="testimonial-role">Owner, DO Essentials — Enugu</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -904,12 +1076,18 @@ setTimeout(hideLoader, 6000); // hard cap — fires no matter what's still loadi
       { text: '    ' }, { text: '"email"', cls: 't-key' }, { text: ': ' }, { text: '"chukwuemekaegbunike@gmail.com"', cls: 't-str' }, { text: '\n' },
       { text: '  }\n}' },
     ];
-    (function typeTerminal() {
+   
+   (function typeTerminal() {
       const body = document.getElementById('terminalBody');
       const cursor = document.getElementById('termCursor');
       let segIdx = 0, charIdx = 0;
+
       function typeNext() {
-        if (segIdx >= termSegments.length) return;
+        if (segIdx >= termSegments.length) {
+          // Finished typing — hold for 5s, then erase and restart
+          setTimeout(eraseAll, 5000);
+          return;
+        }
         const seg = termSegments[segIdx];
         const char = seg.text[charIdx];
         let span = body.querySelector(`[data-seg="${segIdx}"]`);
@@ -929,8 +1107,23 @@ setTimeout(hideLoader, 6000); // hard cap — fires no matter what's still loadi
         if (charIdx >= seg.text.length) { segIdx++; charIdx = 0; }
         setTimeout(typeNext, char === '\n' ? 30 : Math.random() * 25 + 18);
       }
+
+      function eraseAll() {
+        // Remove every typed node except the cursor
+        [...body.childNodes].forEach(node => {
+          if (node !== cursor) body.removeChild(node);
+        });
+        segIdx = 0;
+        charIdx = 0;
+        setTimeout(typeNext, 500); // brief pause before retyping
+      }
+
       setTimeout(typeNext, 600);
     })();
+   
+   
+   
+   
 
     // ── Active nav on scroll ──
     const sections = document.querySelectorAll('section[id]');
