@@ -87,7 +87,11 @@
       color: var(--white); text-decoration: none; letter-spacing: -0.02em;
       display: flex; align-items: center; gap: 0.4rem;
     }
-    .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); display: inline-block; }
+    .nav-logo-img {
+  height: 43px;
+  width: auto;
+  display: block;
+}
     .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
     .nav-links a {
       color: var(--slate2); text-decoration: none; font-size: 0.875rem;
@@ -425,8 +429,17 @@
 
     /* ── FOOTER ── */
     footer { background: rgba(12,17,32,0.6); border-top: 1px solid var(--border); padding: 2.5rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); text-decoration: none; }
-    .footer-logo .dot { color: var(--cyan); }
+    .footer-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.footer-logo-img {
+  height: 50px;
+  width: auto;
+}
+   
+   
     footer p { color: var(--slate); font-size: 0.84rem; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { color: var(--slate); font-size: 0.84rem; text-decoration: none; transition: color 0.2s; }
@@ -479,6 +492,11 @@
       font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
       color: var(--white); letter-spacing: -0.04em;
     }
+    
+.loader-logo-img {
+  height: 100px;
+  width: auto;
+}
     .loader-logo span { color: var(--cyan); }
     .loader-bar {
       width: 160px; height: 2px; background: var(--border);
@@ -522,7 +540,7 @@
 
   <div id="loader">
     <div class="loader-inner">
-      <div class="loader-logo">CE<span>.</span></div>
+      <div class="loader-logo"><img src="images/logo.png" alt="CE Studios" class="loader-logo-img" /></div>
       <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
   </div>
@@ -533,8 +551,10 @@
   <!-- NAV -->
   <nav>
     <a href="#hero" class="nav-logo">
-      <span class="nav-logo-dot"></span>CE
-    </a>
+  <img src="images/logo.png" alt="CE Studios logo" class="nav-logo-img" />
+</a>
+
+ 
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -926,7 +946,9 @@
   </section>
 
   <footer>
-    <a href="#hero" class="footer-logo">Chukwuemeka Egbunike<span class="dot">.</span></a>
+    <a href="#hero" class="footer-logo">
+  <img src="images/logo.png" alt="CE Studios logo" class="footer-logo-img" />
+</a>
     <div class="footer-links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
